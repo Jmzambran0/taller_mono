@@ -67,11 +67,11 @@ if (!empty($_GET['cod'])) {
             </div>
             <div>
                 <label>fecha Estimada de Finalizacion</label>
-                <input type="text" name="fechaEstimadaFinalizacion" value="<?php echo $fechaEstimadaFinalizacion ?>" required>
+                <input type="date" name="fechaEstimadaFinalizacion" value="<?php echo $fechaEstimadaFinalizacion ?>" required>
             </div>
             <div>
                 <label>fechaFinalizacion</label>
-                <input type="text" name="fechaFinalizacion" value="<?php echo $fechaFinalizacion ?>" required>
+                <input type="date" name="fechaFinalizacion" value="<?php echo $fechaFinalizacion ?>" required>
             </div>
             <div>
                 <label>creador de la Tarea</label>
@@ -83,23 +83,40 @@ if (!empty($_GET['cod'])) {
             </div>
             <div>
                 <label>Empleado</label>
+                <select name="Empleados" id="Emplea">
+                    <option value="1">Juan Carlos Gomez</option>
+                    <option value="2">Ana María Blanco</option>
+                    <option value="3">Juan Fernando Perez</option>
+                    <option value="4">Angela Díaz</option>
+                </select>
                 <input type="text" name="idEmpleado" value="<?php echo $idEmpleado ?>" required>
             </div>
             <div>
                 <label>Estado</label>
+                <select name="Empleados" id="Emplea">
+                    <option value="1">Pendiente</option>
+                    <option value="2">En proceso</option>
+                    <option value="3">Terminada</option>
+                    <option value="4">En impendimento</option>
+                </select>
                 <input type="text" name="idEstado" value="<?php echo $idEstado ?>" required>
             </div>
             <div>
                 <label>prioridad</label>
+                <select name="Empleados" id="Emplea">
+                    <option value="1">Alta</option>
+                    <option value="2">Media</option>
+                    <option value="3">Baja</option>
+                </select>
                 <input type="text" name="idPrioridad" value="<?php echo $idPrioridad ?>" required>
             </div>
             <div>
                 <label>fecha de creacion</label>
-                <input type="text" name="created_at" value="<?php echo $created_at ?>" required>
+                <input type="date" name="created_at" value="<?php echo $created_at ?>" required>
             </div>
             <div>
                 <label>fecha de actualizacion</label>
-                <input type="text" name="updated_at" value="<?php echo $updated_at ?>" required>
+                <input type="date" name="updated_at" value="<?php echo $updated_at ?>" required>
             </div>
             <div>
                 <button type="submit">Guardar</button>

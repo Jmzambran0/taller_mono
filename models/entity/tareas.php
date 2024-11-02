@@ -6,17 +6,17 @@ use App\models\db\TareasDb;
 
 class Tareas{
     private $id;
-    private $titulo_tarea;
+    private $titulo;
     private $descripcion;
-    private $fechaCreacion;
-    private $fechaModificacion;
-    private $estado;
-    private $fechaEstimada;
+    private $fechaEstimadaFinalizacion;
     private $fechaFinalizacion;
-    private $persona;
-    private $responsable;
-    private $priolidad;
+    private $creadorTarea;
     private $observaciones;
+    private $idEstado;
+    private $idEmpleado;
+    private $idPrioridad;
+    private $created_at;
+    private $updated_at;
 
     //
     function set($prop, $value){

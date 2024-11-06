@@ -2,9 +2,17 @@
 require '../models/db/tareas_db.php';
 require '../models/queries/tareasQuery.php';
 require '../models/entity/tareas.php';
+require '../models/entity/prioridades.php';
+require '../models/queries/prioridadesQuery.php';
 require '../controllers/tareasController.php';
-
+require '../models/entity/estados.php';
+require '../models/queries/estadosQuery.php';
+require '../models/entity/empleados.php';
+require '../models/queries/empleadosQuery.php';
 use App\controllers\TareasController;
+use App\models\entity\Prioridades;
+use App\models\entity\Estados;
+use App\models\entity\Empleados;
 
 
 $titulos  = empty($_GET['cod']) ? 'Crear Tarea' : 'Modificar Tarea';
@@ -36,7 +44,9 @@ if (!empty($_GET['cod'])) {
     $updated_at = $tareas->get('updated_at');
 }
 
-
+$listaPrioridades = Prioridades::all();
+$listarEstados = Estados::all();
+$listarEmpleados = Empleados::all();
 ?>
 
 <!DOCTYPE html>
@@ -83,32 +93,33 @@ if (!empty($_GET['cod'])) {
             </div>
             <div>
                 <label>Empleado</label>
-                <select name="Empleados" id="Emplea">
-                    <option value="1">Juan Carlos Gomez</option>
-                    <option value="2">Ana María Blanco</option>
-                    <option value="3">Juan Fernando Perez</option>
-                    <option value="4">Angela Díaz</option>
+                <select name="empleados" id="emple">
+                <?php
+                foreach ($listarEmpleados as $empleado) {
+                    echo '<option value="' . $empleado['id'] . '">' . $empleado['nombre'] . '</option>';
+                }
+                ?>
                 </select>
-                <input type="text" name="idEmpleado" value="<?php echo $idEmpleado ?>" required>
             </div>
             <div>
                 <label>Estado</label>
-                <select name="Empleados" id="Emplea">
-                    <option value="1">Pendiente</option>
-                    <option value="2">En proceso</option>
-                    <option value="3">Terminada</option>
-                    <option value="4">En impendimento</option>
+                <select name="estados" id="estad">
+                <?php
+                foreach ($listarEstados as $estado) {
+                    echo '<option value="' . $estado['id'] . '">' . $estado['nombre'] . '</option>';
+                }
+                ?>
                 </select>
-                <input type="text" name="idEstado" value="<?php echo $idEstado ?>" required>
             </div>
             <div>
                 <label>prioridad</label>
-                <select name="Empleados" id="Emplea">
-                    <option value="1">Alta</option>
-                    <option value="2">Media</option>
-                    <option value="3">Baja</option>
+                <select name="prioridades" id="priori">
+                <?php
+                foreach ($listaPrioridades as $prioridad) {
+                    echo '<option value="' . $prioridad['id'] . '">' . $prioridad['nombre'] . '</option>';
+                }
+                ?>
                 </select>
-                <input type="text" name="idPrioridad" value="<?php echo $idPrioridad ?>" required>
             </div>
             <div>
                 <label>fecha de creacion</label>

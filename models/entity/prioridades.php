@@ -1,36 +1,23 @@
 <?php
 namespace App\models\entity;
 
-use App\models\queries\PrioridadesQuery;
 use App\models\db\TareasDb;
-class Prioridades{
-    private $id;
-    private $nombre;
+use App\models\queries\PrioridadesQuery;
 
-    static function find($id){
-        $sql = PrioridadesQuery::whereId($id);
+class Prioridades {
+    static function all() {
+        $db = new TareasDb(); 
+        $sql = PrioridadesQuery::all();
+        $result = $db->query($sql); 
+        $prioridades = []; 
 
-        
-        $db = new TareasDb();
-        $result = $db->query($sql);
-        $tarea = new Tareas();
-        while($row = $result->fetch_assoc()){
-            $tarea->set('id',$row['id']);
-            $tarea->set('titulo',$row['titulo']);
-            $tarea->set('descripcion',$row['descripcion']);
-            $tarea->set('fechaEstimadaFinalizacion',$row['fechaEstimadaFinalizacion']);
-            $tarea->set('fechaFinalizacion',$row['fechaFinalizacion']);
-            $tarea->set('creadorTarea',$row['creadorTarea']);
-            $tarea->set('observaciones',$row['observaciones']);
-            $tarea->set('idEmpleado',$row['idEmpleado']);
-            $tarea->set('idEstado',$row['idEstado']);
-            $tarea->set('idPrioridad',$row['idPrioridad']);
-            $tarea->set('created_at',$row['created_at']);
-            $tarea->set('updated_at',$row['updated_at']);
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $prioridades[] = ['id' => $row["id"], 'nombre' => $row["nombre"]];
+            }
         }
-        $db->close();
-        return $tarea;
+
+        $db->close(); 
+        return $prioridades; 
     }
-
-
 }

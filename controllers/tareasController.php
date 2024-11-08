@@ -28,12 +28,15 @@ class TareasController{
     function getTareas($id){
         return tareas::find($id);
     }
+    
     function updateTareas($datos){
             $tarea = new tareas();
             $tarea->set('idEstado', $datos['idEstado']);
             $tarea->set('updated_at', $datos['updated_at']);
             return $tarea->update();
         }
+
+        function deleteTarea($id){
+            return tareas::delete($id);
+        }
     }
-
-

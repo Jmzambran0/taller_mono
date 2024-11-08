@@ -3,8 +3,6 @@
 namespace App\views;
 
 use App\controllers\TareasController;
-use App\models\entity\Empleados;
-use App\models\queries\empleadosQuery;
 
 
 class TareasView
@@ -36,7 +34,10 @@ class TareasView
                 $rows .= '  <td>' . $tarea->prioridad()->get("nombre") . '</td>';
                 $rows .= '  <td>' . $tarea->get('created_at') . '</td>';   
                 $rows .= '  <td>' . $tarea->get('updated_at') . '</td>'; 
-                $rows .= '  <td> <a href="formularioTarea.php?cod='.$id.'"><button type="submit" name="modificar" > Modificar</button> </a>  </td>'; 
+                $rows .= '  <td>';
+                $rows .= '      <a href="formularioTarea.php?cod='.$id.'"><button type="submit" name="modificar" > Modificar</button> </a>';
+                $rows .= '      <a href="eliminarTarea.php?cod='.$id.'"><button type="submit" name="eliminar" > Eliminar</button> </a>';
+                $rows .= '  </td>'; 
                 $rows .= '</tr>';
             }
         } else {
@@ -44,7 +45,7 @@ class TareasView
             $rows .= '  <td colspan="3">No hay datos</td>';
             $rows .= '</tr>';
         }
-        $table = '<table border="1">';
+        $table = '<table>';
         $table .= ' <thead>';
         $table .= '     <tr>';
         $table .= '         <th>Titulo</th>';
@@ -54,7 +55,7 @@ class TareasView
         $table .= '         <th>Creador de la tarea</th>';
         $table .= '         <th>Observaciones</th>';
         $table .= '         <th>Empelado</th>';
-        $table .= '         <th>Estado de la tarea</th>';
+        $table .= '         <th>Estado</th>';
         $table .= '         <th>Prioridad</th>';
         $table .= '         <th>Fecha de creacion</th>';
         $table .= '         <th>Fecha de actualizacion</th>';
@@ -69,9 +70,7 @@ class TareasView
     }
 
     function getMsgConfirmarTarea($datosFormulario){
-    
-
-        $datosGuardados = empty($datosFormulario['cod']) 
+            $datosGuardados = empty($datosFormulario['cod']) 
             ?$this->tareasController->newTareas($datosFormulario)
             :$this->tareasController->updateTareas($datosFormulario);
         if($datosGuardados){
@@ -79,5 +78,9 @@ class TareasView
         }else{
             return '<p>No se pudo gardar los datos de la tarea</p>';
         }
+    }
+
+    function getMsgEliminarTarea($id){
+        $this->tareasController->deleteTarea($id);
     }
 }

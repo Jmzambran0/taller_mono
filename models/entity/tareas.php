@@ -92,6 +92,14 @@ class Tareas{
         return $result;
     }
 
+    static function delete($id){
+        $sql = TareasQuery::deleteId($id);
+        $db = new TareasDb();
+        $result = $db->query($sql);
+        $db->close();
+        return $result;
+    }
+
 
     function empleado(){
         return Empleados::find($this->get('idEmpleado'));

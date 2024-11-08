@@ -30,7 +30,7 @@ $tareasViews = new TareasView();
         <h1>Lista de tareas</h1>
     </header>
     <section>
-        <a href="formularioTarea.php">Registrar la tarea</a>
+        <div class="nuevaTarea"><a href="formularioTarea.php"><button>NUEVA TAREA</button></a></div>
         <br>
         <?php echo $tareasViews->tablaTareas(); ?>
         <br>

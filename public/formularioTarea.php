@@ -15,7 +15,7 @@ use App\models\entity\Estados;
 use App\models\entity\Empleados;
 
 
-$titulos  = empty($_GET['cod']) ? 'Crear Tarea' : 'Modificar Tarea';
+$titulos  = empty($_GET['cod']) ? 'Crear nueva tarea' : 'Modificar tarea';
 $titulo = '';
 $descripcion = '';
 $fechaEstimadaFinalizacion = '';
@@ -56,6 +56,7 @@ $listarEmpleados = Empleados::list();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulario de Tarea</title>
+    <link rel="stylesheet" href="css/tareas.css">
 </head>
 
 <body>
@@ -66,6 +67,8 @@ $listarEmpleados = Empleados::list();
             if (!empty($_GET['cod'])) {
                 echo '<input type ="hidden" name="cod" value="' . $_GET['cod'] . '">';
             }
+            echo '<input type="hidden" name="created_at" value="' . date('Y-m-d H:i:s') . '" required>'; //fecha de creacion
+            echo '<input type="hidden" name="updated_at" value="' . date('Y-m-d H:i:s') . '" required>'; //fecha de actualizacion
             ?>
             <div>
                 <label>titulo de la tarea</label>
@@ -120,14 +123,6 @@ $listarEmpleados = Empleados::list();
                 }
                 ?>
                 </select>
-            </div>
-            <div>
-                <label>fecha de creacion</label>
-                <input type="date" name="created_at" value="<?php echo $created_at ?>" required>
-            </div>
-            <div>
-                <label>fecha de actualizacion</label>
-                <input type="date" name="updated_at" value="<?php echo $updated_at ?>" required>
             </div>
             <div>
                 <button type="submit">Guardar</button>

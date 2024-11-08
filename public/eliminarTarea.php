@@ -1,14 +1,10 @@
 <?php
-require '../models/db/tareas_db.php';
-require '../models/queries/tareasQuery.php';
-require '../models/entity/tareas.php';
 require '../controllers/tareasController.php';
-require '../views/tareasView.php';
 use App\views\TareasView;
 
 $tareasView = new TareasView();
-$datosFormulario = $_POST;
-$msg = $tareasView->getMsgConfirmarTarea($datosFormulario);
+$id = $_GET['cod'];
+$msg = $tareasView->getMsgEliminarTarea($id);
 
 ?>
 <!DOCTYPE html>

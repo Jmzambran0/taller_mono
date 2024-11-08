@@ -30,6 +30,11 @@ class TareasQuery{
     static function whereId($id) {
         return "select * from tareas where id=$id";
     }
+
+    static function deleteId($id) {
+        return "delete from tareas where id = $id";
+    }
+
     static function update($tarea) {
         $id = $tarea->get('id');
         $idEstado = $tarea->get('idEstado');

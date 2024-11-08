@@ -3,6 +3,9 @@
 namespace App\views;
 
 use App\controllers\TareasController;
+use App\models\entity\Empleados;
+use App\models\queries\empleadosQuery;
+
 
 class TareasView
 {
@@ -28,9 +31,9 @@ class TareasView
                 $rows .= '  <td>' . $tarea->get('fechaFinalizacion') . '</td>'; 
                 $rows .= '  <td>' . $tarea->get('creadorTarea') . '</td>'; 
                 $rows .= '  <td>' . $tarea->get('observaciones') . '</td>'; 
-                $rows .= '  <td>' . $tarea->get('idEmpleado') . '</td>';  
-                $rows .= '  <td>' . $tarea->get('idEstado') . '</td>';
-                $rows .= '  <td>' . $tarea->get('idPrioridad') . '</td>';
+                $rows .= '  <td>' . $tarea->empleado()->get("nombre") . '</td>';  
+                $rows .= '  <td>' . $tarea->estado()->get("nombre") . '</td>';
+                $rows .= '  <td>' . $tarea->prioridad()->get("nombre") . '</td>';
                 $rows .= '  <td>' . $tarea->get('created_at') . '</td>';   
                 $rows .= '  <td>' . $tarea->get('updated_at') . '</td>'; 
                 $rows .= '  <td> <a href="formularioTarea.php?cod='.$id.'"><button type="submit" name="modificar" > Modificar</button> </a>  </td>'; 

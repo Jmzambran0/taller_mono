@@ -2,6 +2,12 @@
 require '../models/db/tareas_db.php';
 require '../models/queries/tareasQuery.php';
 require '../models/entity/tareas.php';
+require '../models/entity/empleados.php';
+require '../models/queries/empleadosQuery.php';
+require '../models/entity/estados.php';
+require '../models/queries/estadosQuery.php';
+require '../models/entity/prioridades.php';
+require '../models/queries/prioridadesQuery.php';
 require '../controllers/tareasController.php';
 require '../views/tareasView.php';
 

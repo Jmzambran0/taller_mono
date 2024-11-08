@@ -44,9 +44,9 @@ if (!empty($_GET['cod'])) {
     $updated_at = $tareas->get('updated_at');
 }
 
-$listaPrioridades = Prioridades::all();
-$listarEstados = Estados::all();
-$listarEmpleados = Empleados::all();
+$listaPrioridades = Prioridades::list();
+$listarEstados = Estados::list();
+$listarEmpleados = Empleados::list();
 ?>
 
 <!DOCTYPE html>
@@ -93,7 +93,7 @@ $listarEmpleados = Empleados::all();
             </div>
             <div>
                 <label>Empleado</label>
-                <select name="empleados" id="emple">
+                <select name="idEmpleado" id="emple">
                 <?php
                 foreach ($listarEmpleados as $empleado) {
                     echo '<option value="' . $empleado['id'] . '">' . $empleado['nombre'] . '</option>';
@@ -103,7 +103,7 @@ $listarEmpleados = Empleados::all();
             </div>
             <div>
                 <label>Estado</label>
-                <select name="estados" id="estad">
+                <select name="idEstado" id="estad">
                 <?php
                 foreach ($listarEstados as $estado) {
                     echo '<option value="' . $estado['id'] . '">' . $estado['nombre'] . '</option>';
@@ -113,7 +113,7 @@ $listarEmpleados = Empleados::all();
             </div>
             <div>
                 <label>prioridad</label>
-                <select name="prioridades" id="priori">
+                <select name="idPrioridad" id="priori">
                 <?php
                 foreach ($listaPrioridades as $prioridad) {
                     echo '<option value="' . $prioridad['id'] . '">' . $prioridad['nombre'] . '</option>';

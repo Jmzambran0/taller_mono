@@ -3,6 +3,8 @@ namespace App\models\entity;
 
 use App\models\queries\TareasQuery;
 use App\models\db\TareasDb;
+use App\models\entity\Empleados;
+
 
 class Tareas{
     private $id;
@@ -81,6 +83,7 @@ class Tareas{
         $db->close();
         return $tarea;
     }
+    
     function update(){
         $sql = TareasQuery::update($this);
         $db = new TareasDb();
@@ -89,4 +92,14 @@ class Tareas{
         return $result;
     }
 
+
+    function empleado(){
+        return Empleados::find($this->get('idEmpleado'));
+    }
+    function estado(){
+        return Estados::find($this->get('idEstado'));
+    }
+    function prioridad(){
+        return Prioridades::find($this->get('idPrioridad'));
+    }
 }

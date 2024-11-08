@@ -7,4 +7,7 @@ class PrioridadesQuery{
         return "select * from prioridades";
         
     }
+    static function whereIdPrioridad($id) {
+        return "select * from prioridades where id=$id";
+    }
 }

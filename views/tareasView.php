@@ -35,14 +35,14 @@ class TareasView
                 $rows .= '  <td>' . $tarea->get('created_at') . '</td>';   
                 $rows .= '  <td>' . $tarea->get('updated_at') . '</td>'; 
                 $rows .= '  <td>';
-                $rows .= '      <a href="formularioTarea.php?cod='.$id.'"><button type="submit" name="modificar" > Modificar</button> </a>';
-                $rows .= '      <a href="eliminarTarea.php?cod='.$id.'"><button type="submit" name="eliminar" > Eliminar</button> </a>';
+                $rows .= '      <a href="formularioTarea.php?cod='.$id.'"><button type="submit" name="modificar" class="botonModificar"> Modificar</button> </a>';
+                $rows .= '      <a href="?deleteid='.$id.'"><button type="submit" name="eliminar" class="botonEliminar"> Eliminar</button> </a>';
                 $rows .= '  </td>'; 
                 $rows .= '</tr>';
             }
         } else {
             $rows .= '<tr>';
-            $rows .= '  <td colspan="3">No hay datos</td>';
+            $rows .= '  <td colspan="12">No hay datos</td>';
             $rows .= '</tr>';
         }
         $table = '<table>';
@@ -54,12 +54,12 @@ class TareasView
         $table .= '         <th>Fecha de finalizacion</th>';
         $table .= '         <th>Creador de la tarea</th>';
         $table .= '         <th>Observaciones</th>';
-        $table .= '         <th>Empelado</th>';
+        $table .= '         <th>Empleado</th>';
         $table .= '         <th>Estado</th>';
         $table .= '         <th>Prioridad</th>';
         $table .= '         <th>Fecha de creacion</th>';
         $table .= '         <th>Fecha de actualizacion</th>';
-        $table .= '         <th>Eliminar o Modificar</th>';
+        $table .= '         <th>Accion</th>';
         $table .= '     </tr>';
         $table .= ' </thead>';
         $table .= ' <tbody>';

@@ -14,6 +14,11 @@ require '../views/tareasView.php';
 use App\views\TareasView;
 
 $tareasViews = new TareasView();
+
+if(isset($_GET['deleteid'])) {
+    $id = $_GET['deleteid'];
+    echo $tareasViews->getMsgEliminarTarea($id);
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">

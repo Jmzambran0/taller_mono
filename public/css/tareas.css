@@ -69,6 +69,7 @@ table button {
     background-color: #616161;
     color: white;
     padding: 10px 0;
+    margin:5px 0;
     font-size: 16px;
     border: none;
     border-radius: 4px;
@@ -76,8 +77,12 @@ table button {
     transition: background-color 0.3s ease;
 }
 
-table button:hover {
-    background-color: #ca3c3c;
+.botonModificar:hover {
+    background-color: #3679c7;
+}
+
+.botonEliminar:hover {
+    background-color: #a73a3a;
 }
 
 /* ------------ Formulario ---------------- */
@@ -103,7 +108,7 @@ label {
     color: #555;
 }
 
-input {
+input, select{
     width: 100%;
     padding: 8px;
     margin-bottom: 20px;
@@ -114,7 +119,7 @@ input {
     font-size: 16px;
 }
 
-input:focus {
+input:focus, select:focus{
     outline: none;
     border-color: #4CAF50;
     box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);

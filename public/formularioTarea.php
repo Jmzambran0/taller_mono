@@ -79,11 +79,11 @@ $listarEmpleados = Empleados::list();
                 <input type="text" name="descripcion" value="<?php echo $descripcion ?>" required>
             </div>
             <div>
-                <label>fecha Estimada de Finalizacion</label>
+                <label>fecha estimada de finalizacion</label>
                 <input type="date" name="fechaEstimadaFinalizacion" value="<?php echo $fechaEstimadaFinalizacion ?>" required>
             </div>
             <div>
-                <label>fechaFinalizacion</label>
+                <label>Fecha de finalizacion</label>
                 <input type="date" name="fechaFinalizacion" value="<?php echo $fechaFinalizacion ?>" required>
             </div>
             <div>

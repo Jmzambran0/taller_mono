@@ -85,6 +85,32 @@ table button {
     background-color: #a73a3a;
 }
 
+.filtro{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    grid-template-areas:
+    "l l"
+    "s d";
+    label {
+        margin: auto;
+        grid-area: l;
+        width: 90%;
+    }
+    select {
+        margin: auto;
+        grid-area: s;
+        width: 90%;
+    }
+    div {
+        margin: auto;
+        grid-area: d;
+        width: 90%;
+        button:hover {
+            background-color: #999999;
+        }
+    }
+}
+
 /* ------------ Formulario ---------------- */
 
 body h1 {
@@ -139,4 +165,54 @@ form button {
 
 form button:hover {
     background-color: #45a049;
+}
+
+.pSaved {
+    position: absolute;
+    left: 5%;
+    width: 90%;
+    top: 10%;
+
+    color: #088504;
+    background-color: #cdffd0;
+    padding: 15px 0;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.aviso{
+    position: absolute;
+    top: 35%;
+    height: 200px;
+    left: 25%;
+    width: 50%;
+
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+
+    a {
+        position: absolute;
+        bottom: 15%;
+        width: 90%;
+        left: 5%;
+    }
+    button {
+        width: 100%;
+        background-color: #efefef;
+        color: #424242;
+        padding: 15px 0;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #d1d1d1;
+    }
 }

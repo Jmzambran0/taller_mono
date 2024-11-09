@@ -15,10 +15,10 @@ class TareasView
         $this->tareasController = new TareasController();
     }
 
-    function tablatareas()
+    function tablatareas($filter)
     {
         $rows = '';
-        $tareas = $this->tareasController->alltareas();
+        $tareas = $this->tareasController->alltareas($filter);
         if (count($tareas) > 0) {
             foreach ($tareas as $tarea) {
                 $id = $tarea->get('id');
@@ -74,7 +74,7 @@ class TareasView
             ?$this->tareasController->newTareas($datosFormulario)
             :$this->tareasController->updateTareas($datosFormulario);
         if($datosGuardados){
-            return '<p>Datos del contacto guardatos</p>';
+            return '<p class="pSaved">¡Tarea guardada con exito!</p>';
         }else{
             return '<p>No se pudo gardar los datos de la tarea</p>';
         }

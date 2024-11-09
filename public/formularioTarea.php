@@ -67,8 +67,8 @@ $listarEmpleados = Empleados::list();
             if (!empty($_GET['cod'])) {
                 echo '<input type ="hidden" name="cod" value="' . $_GET['cod'] . '">';
             }
-            echo '<input type="hidden" name="created_at" value="' . date('Y-m-d H:i:s') . '" required>'; //fecha de creacion
-            echo '<input type="hidden" name="updated_at" value="' . date('Y-m-d H:i:s') . '" required>'; //fecha de actualizacion
+            echo '<input type="hidden" name="created_at" value=' . date('Y-m-d H:i:s') . '>'; //fecha de creacion
+            echo '<input type="hidden" name="updated_at" value=' . date('Y-m-d H:i:s') . '>'; //fecha de actualizacion
             ?>
             <div>
                 <label>titulo de la tarea</label>

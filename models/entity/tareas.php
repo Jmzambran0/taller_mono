@@ -28,8 +28,13 @@ class Tareas{
         return $this-> {$prop};
     }
 
-    static function all(){
-        $sql = TareasQuery::all();
+    static function all($filter){
+        $sql = '';
+        switch ($filter){
+            case 1: $sql = TareasQuery::allOrderedByPriority();break; //Orden por prioridad y fecha estimada
+            case 2: $sql = TareasQuery::allOrderedByTitle();break; //Orden por titulo
+            default:  $sql = TareasQuery::all(); //Orden por defecto
+        }
         $db = new TareasDb();
         $result = $db-> query($sql);
         $tareas = [];

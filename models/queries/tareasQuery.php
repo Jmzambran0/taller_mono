@@ -4,8 +4,21 @@ namespace App\models\queries;
 class TareasQuery{
 
     static function all(){
-        return "select * from Tareas";
+        return "select * from tareas";
     }
+
+    static function allOrderedByPriority(){
+        return "SELECT * FROM tareas ORDER BY idPrioridad ASC, fechaEstimadaFinalizacion ASC";
+    }
+
+    static function allOrderedByTitle(){
+        return "SELECT * FROM tareas ORDER BY LOWER(titulo) ASC";
+    }
+
+    static function dateRangeFilter($fechaInicio, $fechaFin){
+        return "SELECT * FROM tareas WHERE fechaEstimadaFinalizacion BETWEEN '$fechaInicio' AND '$fechaFin'";
+    }
+
     static function insert($tarea){
         $titulo = $tarea->get('titulo');
         $descripcion = $tarea->get('descripcion');
@@ -37,12 +50,10 @@ class TareasQuery{
 
     static function update($tarea) {
         $id = $tarea->get('id');
+        $idEmpleado = $tarea->get('idEmpleado');
         $idEstado = $tarea->get('idEstado');
         $updated_at = $tarea->get('updated_at');
-        $sql = "update tareas set ";
-        $sql .= "idEstado='$idEstado',";
-        $sql .= "updated_at='$updated_at',";
-        $sql .= "   where id=$id";
+        $sql = "UPDATE tareas SET idEmpleado='$idEmpleado',idEstado='$idEstado',updated_at='$updated_at' WHERE id = '$id'";
         return $sql;
     }
 }

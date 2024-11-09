@@ -37,7 +37,28 @@ if(isset($_GET['deleteid'])) {
     <section>
         <div class="nuevaTarea"><a href="formularioTarea.php"><button>NUEVA TAREA</button></a></div>
         <br>
-        <?php echo $tareasViews->tablaTareas(); ?>
+        <div>
+            <form action="inicio.php" method="get" class="filtro">
+                <label>Ordenar por:</label>
+                    <select name="order">
+                        <option value="1">prioridad</option>
+                        <option value="2">titulo</option>
+                    </select>
+                <div>
+                    <button type="submit">Ordenar</button>
+                </div>
+            </form>
+        </div>
+        <br>
+        <?php 
+        if(isset($_GET['order'])) {
+            $order = $_GET['order'];
+            echo $tareasViews->tablaTareas($order);
+        } elseif(isset($_GET['filter'])){
+            $filter = $_GET['filter'];
+        } else {
+            echo $tareasViews->tablaTareas(null);
+        }?>
         <br>
     </section>
 </body>

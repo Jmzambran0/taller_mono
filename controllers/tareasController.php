@@ -4,8 +4,8 @@ namespace App\controllers;
 use App\models\entity\tareas;
 
 class TareasController{
-    function allTareas(){
-        $tareas = tareas::all();
+    function allTareas($filter){
+        $tareas = tareas::all($filter);
         return $tareas;
     }
 
@@ -31,6 +31,8 @@ class TareasController{
     
     function updateTareas($datos){
             $tarea = new tareas();
+            $tarea->set('id', $datos['cod']);
+            $tarea->set('idEmpleado', $datos['idEmpleado']);
             $tarea->set('idEstado', $datos['idEstado']);
             $tarea->set('updated_at', $datos['updated_at']);
             return $tarea->update();

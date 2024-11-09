@@ -12,6 +12,9 @@ require '../controllers/tareasController.php';
 require '../views/tareasView.php';
 
 use App\views\TareasView;
+use App\models\entity\Empleados;
+
+$listarEmpleados = Empleados::list();
 
 $tareasViews = new TareasView();
 
@@ -41,11 +44,41 @@ if(isset($_GET['deleteid'])) {
             <form action="inicio.php" method="get" class="filtro">
                 <label>Ordenar por:</label>
                     <select name="order">
-                        <option value="1">prioridad</option>
-                        <option value="2">titulo</option>
+                        <option value="8">prioridad</option>
+                        <option value="9">titulo</option>
                     </select>
                 <div>
                     <button type="submit">Ordenar</button>
+                </div>
+            </form>
+            <form action="inicio.php" method="get">
+                <label>filtrar por:</label>
+                    <div>
+                        <label>Fecha inicial</label>
+                        <input type="date" name="fechaInicio">
+                    </div>
+                    <div>
+                        <label>Fecha final</label>
+                        <input type="date" name="fechaFinal">
+                    </div>
+                <div>
+                    <button type="submit">Ordenar</button>
+                </div>
+            </form>
+            <form action="inicio.php" method="get">
+                <label>filtrar por:</label>
+                    <div>
+                        <label>Empleado</label>
+                        <select name="filter">
+                            <?php
+                            foreach ($listarEmpleados as $empleado) {
+                            echo '<option value="' . $empleado['id'] . '">' . $empleado['nombre'] . '</option>';
+                            }
+                            ?>
+                        </select>
+                    </div>
+                <div>
+                    <button type="submit">buscar</button>
                 </div>
             </form>
         </div>
@@ -56,6 +89,7 @@ if(isset($_GET['deleteid'])) {
             echo $tareasViews->tablaTareas($order);
         } elseif(isset($_GET['filter'])){
             $filter = $_GET['filter'];
+            echo $tareasViews->tablatareas($filter);
         } else {
             echo $tareasViews->tablaTareas(null);
         }?>

@@ -19,6 +19,10 @@ class TareasQuery{
         return "SELECT * FROM tareas WHERE fechaEstimadaFinalizacion BETWEEN '$fechaInicio' AND '$fechaFin'";
     }
 
+    static function empleadoFilter($idEmpleado){
+        return "SELECT * FROM tareas ORDER BY FIELD(idEmpleado, '$idEmpleado'";
+    }
+
     static function insert($tarea){
         $titulo = $tarea->get('titulo');
         $descripcion = $tarea->get('descripcion');

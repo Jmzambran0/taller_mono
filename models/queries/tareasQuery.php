@@ -20,7 +20,7 @@ class TareasQuery{
     }
 
     static function empleadoFilter($idEmpleado){
-        return "SELECT * FROM tareas ORDER BY FIELD(idEmpleado, '$idEmpleado'";
+        return "SELECT * FROM tareas WHERE idEmpleado = $idEmpleado";
     }
 
     static function insert($tarea){

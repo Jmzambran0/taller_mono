@@ -33,7 +33,7 @@ class Tareas{
         switch ($filter){
             case 8: $sql = TareasQuery::allOrderedByPriority();break; //Orden por prioridad y fecha estimada
             case 9: $sql = TareasQuery::allOrderedByTitle();break; //Orden por titulo
-            case 1-4: $sql = TareasQuery::empleadoFilter($filter);break; //Orden por titulo
+            case ($filter >= 1 && $filter <=4): $sql = TareasQuery::empleadoFilter($filter);break; //Filtro de empleado
             default:  $sql = TareasQuery::all(); //Orden por defecto
         }
         $db = new TareasDb();

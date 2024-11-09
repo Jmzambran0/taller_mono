@@ -69,7 +69,7 @@ if(isset($_GET['deleteid'])) {
                 <label>filtrar por:</label>
                     <div>
                         <label>Empleado</label>
-                        <select name="filter">
+                        <select name="order">
                             <?php
                             foreach ($listarEmpleados as $empleado) {
                             echo '<option value="' . $empleado['id'] . '">' . $empleado['nombre'] . '</option>';

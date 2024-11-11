@@ -23,6 +23,18 @@ class TareasQuery{
         return "SELECT * FROM tareas WHERE idEmpleado = $idEmpleado";
     }
 
+    static function prioridadFilter($idPrioridad){
+        return "SELECT * FROM tareas WHERE idPrioridad = $idPrioridad";
+    }
+
+    static function tituloFilter($titulo){
+        return "SELECT * FROM tareas WHERE titulo = $titulo";
+    }
+
+    static function descFilter($descripcion){
+        return "SELECT * FROM tareas WHERE descripcion = $descripcion";
+    }
+
     static function insert($tarea){
         $titulo = $tarea->get('titulo');
         $descripcion = $tarea->get('descripcion');

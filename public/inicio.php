@@ -13,8 +13,10 @@ require '../views/tareasView.php';
 
 use App\views\TareasView;
 use App\models\entity\Empleados;
+use App\models\entity\Prioridades;
 
 $listarEmpleados = Empleados::list();
+$listarPrioridades = Prioridades::list();
 
 $tareasViews = new TareasView();
 
@@ -41,42 +43,51 @@ if(isset($_GET['deleteid'])) {
         <div class="nuevaTarea"><a href="formularioTarea.php"><button>NUEVA TAREA</button></a></div>
         <br>
         <div>
-            <form action="inicio.php" method="get" class="filtro">
+            <form action="" method="get" class="filtro">
                 <label>Ordenar por:</label>
-                    <select name="order">
-                        <option value="8">prioridad</option>
-                        <option value="9">titulo</option>
+                    <select name="filter">
+                        <option value="8">Prioridad</option>
+                        <option value="9">Titulo (A - Z)</option>
                     </select>
                 <div>
                     <button type="submit">Ordenar</button>
                 </div>
             </form>
-            <form action="inicio.php" method="get">
-                <label>filtrar por:</label>
-                    <div>
-                        <label>Fecha inicial</label>
-                        <input type="date" name="fechaInicio">
-                    </div>
-                    <div>
-                        <label>Fecha final</label>
-                        <input type="date" name="fechaFinal">
-                    </div>
+            <form action="" method="get">
                 <div>
-                    <button type="submit">Ordenar</button>
+                    <label>Fecha inicial</label>
+                    <input type="date" name="fechaInicio" required>
+                </div>
+                <div>
+                    <label>Fecha final</label>
+                    <input type="date" name="fechaFinal" required>
+                </div>
+                <div>
+                    <button type="submit">buscar</button>
                 </div>
             </form>
-            <form action="inicio.php" method="get">
-                <label>filtrar por:</label>
-                    <div>
-                        <label>Empleado</label>
-                        <select name="order">
-                            <?php
-                            foreach ($listarEmpleados as $empleado) {
-                            echo '<option value="' . $empleado['id'] . '">' . $empleado['nombre'] . '</option>';
-                            }
-                            ?>
-                        </select>
-                    </div>
+            <form action="" method="get" class="filtro">
+                <label>Empleado</label>
+                    <select name="filter">
+                        <?php
+                        foreach ($listarEmpleados as $empleado) {
+                        echo '<option value="' . $empleado['id'] . '">' . $empleado['nombre'] . '</option>';
+                        }
+                        ?>
+                    </select>
+                <div>
+                    <button type="submit">buscar</button>
+                </div>
+            </form>
+            <form action="" method="get" class="filtro">
+                <label>Prioridad</label>
+                    <select name="priority">
+                        <?php
+                        foreach ($listarPrioridades as $prioridad) {
+                        echo '<option value="' . $prioridad['id'] . '">' . $prioridad['nombre'] . '</option>';
+                        }
+                        ?>
+                    </select>
                 <div>
                     <button type="submit">buscar</button>
                 </div>
@@ -84,14 +95,16 @@ if(isset($_GET['deleteid'])) {
         </div>
         <br>
         <?php 
-        if(isset($_GET['order'])) {
-            $order = $_GET['order'];
-            echo $tareasViews->tablaTareas($order);
-        } elseif(isset($_GET['filter'])){
+        if(isset($_GET['filter'])){
             $filter = $_GET['filter'];
-            echo $tareasViews->tablatareas($filter);
+            echo $tareasViews->tablatareas(intval($filter));
+        } elseif(isset($_GET['fechaInicio'])){
+            echo $tareasViews->tablatareas($_GET);
+        } elseif(isset($_GET['priority'])){
+            $prioridad = $_GET['priority'];
+            echo $tareasViews->tablatareas(intval($prioridad) + 10);
         } else {
-            echo $tareasViews->tablaTareas(null);
+            echo $tareasViews->tablaTareas(0);
         }?>
         <br>
     </section>

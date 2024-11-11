@@ -30,12 +30,18 @@ class Tareas{
 
     static function all($filter){
         $sql = '';
-        switch ($filter){
-            case 8: $sql = TareasQuery::allOrderedByPriority();break; //Orden por prioridad y fecha estimada
-            case 9: $sql = TareasQuery::allOrderedByTitle();break; //Orden por titulo
-            case ($filter >= 1 && $filter <=4): $sql = TareasQuery::empleadoFilter($filter);break; //Filtro de empleado
-            default:  $sql = TareasQuery::all(); //Orden por defecto
+        if(is_array($filter)){
+            $sql = TareasQuery::dateRangeFilter($filter["fechaInicio"], $filter['fechaFinal']);
+        } else {
+            switch ($filter){
+                case 8: $sql = TareasQuery::allOrderedByPriority();break; //Orden por prioridad y fecha estimada
+                case 9: $sql = TareasQuery::allOrderedByTitle();break; //Orden por titulo
+                case ($filter >= 1 && $filter <= 4): $sql = TareasQuery::empleadoFilter($filter);break; //Filtro de empleado
+                case ($filter >= 11 && $filter <= 14): $sql = TareasQuery::prioridadFilter($filter - 10);break; //Filtro de prioridad
+                default: $sql = TareasQuery::all(); //Orden por defecto
+            }
         }
+        //echo("<script>console.log('$sql | '+$filter);</script>");
         $db = new TareasDb();
         $result = $db-> query($sql);
         $tareas = [];

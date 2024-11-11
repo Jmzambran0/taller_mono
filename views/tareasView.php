@@ -21,6 +21,12 @@ class TareasView
         $tareas = $this->tareasController->alltareas($filter);
         if (count($tareas) > 0) {
             foreach ($tareas as $tarea) {
+                $estado = '';
+                if($tarea->estado()->get("id")== 4){
+                    $estado = '<td style="color: red; background: #ffe7e7">' . $tarea->estado()->get("nombre") . '</td>';
+                } else {
+                    $estado = '<td>' . $tarea->estado()->get("nombre") . '</td>';
+                }
                 $id = $tarea->get('id');
                 $rows .= '<tr>';
                 $rows .= '  <td>' . $tarea->get('titulo') . '</td>';
@@ -30,7 +36,7 @@ class TareasView
                 $rows .= '  <td>' . $tarea->get('creadorTarea') . '</td>'; 
                 $rows .= '  <td>' . $tarea->get('observaciones') . '</td>'; 
                 $rows .= '  <td>' . $tarea->empleado()->get("nombre") . '</td>';  
-                $rows .= '  <td>' . $tarea->estado()->get("nombre") . '</td>';
+                $rows .=    $estado;
                 $rows .= '  <td>' . $tarea->prioridad()->get("nombre") . '</td>';
                 $rows .= '  <td>' . $tarea->get('created_at') . '</td>';   
                 $rows .= '  <td>' . $tarea->get('updated_at') . '</td>'; 

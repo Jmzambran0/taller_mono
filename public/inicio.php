@@ -33,6 +33,8 @@ if(isset($_GET['deleteid'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Tareas</title>
     <link rel="stylesheet" href="css/tareas.css">
+    <link rel="stylesheet" href="css/filtros.css">
+    <script src="js/filtros.js" defer></script>
 </head>
 
 <body>
@@ -43,54 +45,55 @@ if(isset($_GET['deleteid'])) {
         <div class="nuevaTarea"><a href="formularioTarea.php"><button>NUEVA TAREA</button></a></div>
         <br>
         <div>
-            <form action="" method="get" class="filtro">
+            <label for="filtroSeleccionado">Selecciona un filtro:</label>
+            <select id="filtroSeleccionado">
+                <option value="">-- Selecciona un filtro --</option>
+                <option value="ordenar">Ordenar por</option>
+                <option value="fecha">Filtrar por fecha</option>
+                <option value="empleado">Filtrar por empleado</option>
+                <option value="prioridad">Filtrar por prioridad</option>
+            </select>
+        </div>
+        <div id="filtrosContainer" style="display: none;">
+            <form id="ordenarForm" action="" method="get" class="filtro" style="display: none;">
                 <label>Ordenar por:</label>
-                    <select name="filter">
-                        <option value="8">Prioridad</option>
-                        <option value="9">Titulo (A - Z)</option>
-                    </select>
-                <div>
-                    <button type="submit">Ordenar</button>
-                </div>
+                <select name="filter">
+                    <option value="8">Prioridad</option>
+                    <option value="9">Titulo (A - Z)</option>
+                </select>
+                <button type="submit">Ordenar</button>
             </form>
-            <form action="" method="get">
-                <div>
-                    <label>Fecha inicial</label>
-                    <input type="date" name="fechaInicio" required>
-                </div>
-                <div>
-                    <label>Fecha final</label>
-                    <input type="date" name="fechaFinal" required>
-                </div>
-                <div>
-                    <button type="submit">buscar</button>
-                </div>
+
+            <form id="fechaForm" action="" method="get" class="filtro" style="display: none;">
+                <label>Fecha inicial</label>
+                <input type="date" name="fechaInicio" required>
+                <label>Fecha final</label>
+                <input type="date" name="fechaFinal" required>
+                <button type="submit">Buscar</button>
             </form>
-            <form action="" method="get" class="filtro">
+
+            <form id="empleadoForm" action="" method="get" class="filtro" style="display: none;">
                 <label>Empleado</label>
-                    <select name="filter">
-                        <?php
-                        foreach ($listarEmpleados as $empleado) {
+                <select name="filter">
+                    <?php
+                    foreach ($listarEmpleados as $empleado) {
                         echo '<option value="' . $empleado['id'] . '">' . $empleado['nombre'] . '</option>';
-                        }
-                        ?>
-                    </select>
-                <div>
-                    <button type="submit">buscar</button>
-                </div>
+                    }
+                    ?>
+                </select>
+                <button type="submit">Buscar</button>
             </form>
-            <form action="" method="get" class="filtro">
-                <label>Prioridad</label>
-                    <select name="priority">
-                        <?php
-                        foreach ($listarPrioridades as $prioridad) {
-                        echo '<option value="' . $prioridad['id'] . '">' . $prioridad['nombre'] . '</option>';
-                        }
-                        ?>
-                    </select>
-                <div>
-                    <button type="submit">buscar</button>
-                </div>
+
+            <form id="prioridadForm" action="" method="get" class="filtro" style="display: none;">
+        <label>Prioridad</label>
+        <select name="priority">
+            <?php
+            foreach ($listarPrioridades as $prioridad) {
+                echo '<option value="' . $prioridad['id'] . '">' . $prioridad['nombre'] . '</option>';
+            }
+            ?>
+        </select>
+        <button type="submit">Buscar</button>
             </form>
         </div>
         <br>

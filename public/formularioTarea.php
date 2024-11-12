@@ -72,7 +72,7 @@ $listarEmpleados = Empleados::list();
             ?>
             <div>
                 <label>titulo de la tarea</label>
-                <input type="text" name="titulo" value="<?php echo $titulo ?>" required>
+                <input type="g" name="titulo" value="<?php echo $titulo ?>" required>
             </div>
             <div>
                 <label>descripcion</label>
@@ -99,7 +99,12 @@ $listarEmpleados = Empleados::list();
                 <select name="idEmpleado" id="emple">
                 <?php
                 foreach ($listarEmpleados as $empleado) {
-                    echo '<option value="' . $empleado['id'] . '">' . $empleado['nombre'] . '</option>';
+                    $empleadoTag = '<option value="' . $empleado['id'] . '"'; 
+                    if($empleado['id'] == $idEmpleado) {
+                        $empleadoTag .= ' selected';
+                    }
+                    $empleadoTag .= '>' . $empleado['nombre'] . '</option>';
+                    echo $empleadoTag;
                 }
                 ?>
                 </select>
@@ -109,7 +114,12 @@ $listarEmpleados = Empleados::list();
                 <select name="idEstado" id="estad">
                 <?php
                 foreach ($listarEstados as $estado) {
-                    echo '<option value="' . $estado['id'] . '">' . $estado['nombre'] . '</option>';
+                    $estadoTag = '<option value="' . $estado['id'] . '"'; 
+                    if($estado['id'] == $idEstado) {
+                        $estadoTag .= ' selected';
+                    }
+                    $estadoTag .= '>' . $estado['nombre'] . '</option>';
+                    echo $estadoTag;
                 }
                 ?>
                 </select>
@@ -119,7 +129,12 @@ $listarEmpleados = Empleados::list();
                 <select name="idPrioridad" id="priori">
                 <?php
                 foreach ($listaPrioridades as $prioridad) {
-                    echo '<option value="' . $prioridad['id'] . '">' . $prioridad['nombre'] . '</option>';
+                    $prioridadTag = '<option value="' . $prioridad['id'] . '"'; 
+                    if($prioridad['id'] == $idPrioridad) {
+                        $prioridadTag .= ' selected';
+                    }
+                    $prioridadTag .= '>' . $prioridad['nombre'] . '</option>';
+                    echo $prioridadTag;
                 }
                 ?>
                 </select>

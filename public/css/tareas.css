@@ -15,26 +15,6 @@ header {
 
 /* ------------ Table ---------------- */
 
-.nuevaTarea {
-    max-width: 500px;
-    padding: 20px;
-    margin: auto;
-    button {
-        width: 100%;
-        background-color: #616161;
-        color: white;
-        padding: 20px 0;
-        font-size: 18px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-    button:hover {
-        background-color: #45a049;
-    }
-}
-
 table {
     width: 80%;
     margin: auto;
@@ -106,7 +86,125 @@ table button {
         grid-area: d;
         width: 90%;
         button:hover {
-            background-color: #999999;
+        background-color: #999999;
+        }
+    }
+}
+
+.filtrosGrid{
+    margin: auto;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 60% 25% 15%;
+    grid-template-areas: "f o n";
+}
+
+.orderGrid{
+    grid-area: o;
+    width: 90%;
+}
+
+.filterGrid{
+    grid-area: f;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    grid-template-areas: "select form";
+}
+
+.filterFormGrid{
+    grid-area: form;
+    width: 90%;
+}
+
+.filterSelectGrid{
+    grid-area: select;
+    width: 90%;
+}
+
+#dateFilter{
+    display: none;
+    grid-template-columns: 35% 35% 30%;
+    grid-template-areas: 
+    "l1 l2 ."
+    "d1 d2 b";
+
+    label {
+        margin: auto;
+        width: 90%;
+    }
+    input {
+        margin: auto;
+        width: 90%;
+    }
+    button {
+        grid-area: b;
+        margin: auto;
+        width: 100%;
+        button:hover {
+        background-color: #999999;
+        }
+    }
+}
+
+.l1 {
+    grid-area: l1;
+}
+
+.l2 {
+    grid-area: l2;
+}
+
+.d1 {
+    grid-area: d1;
+}
+
+.d2 {
+    grid-area: d2;
+}
+
+.nuevaTarea {
+    grid-area: n;
+    width: 90%;
+    padding: 20px;
+    button {
+        width: 100%;
+        background-color: #45a049;
+        color: white;
+        padding: 20px 0;
+        font-size: 18px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button:hover {
+        background-color: #616161;
+    }
+}
+
+.filtroInput{
+    display: none;
+    grid-template-columns: 60% 40%;
+    grid-template-areas:
+    "l l"
+    "s d";
+    label {
+        margin: auto;
+        grid-area: l;
+        width: 90%;
+    }
+    input {
+        margin: auto;
+        grid-area: s;
+        width: 90%;
+    }
+    button {
+        margin: auto;
+        grid-area: d;
+        width: 90%;
+        button:hover {
+        background-color: #999999;
         }
     }
 }

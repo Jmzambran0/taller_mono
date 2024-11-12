@@ -30,18 +30,31 @@ class Tareas{
 
     static function all($filter){
         $sql = '';
-        if(is_array($filter)){
-            $sql = TareasQuery::dateRangeFilter($filter["fechaInicio"], $filter['fechaFinal']);
-        } else {
-            switch ($filter){
-                case 8: $sql = TareasQuery::allOrderedByPriority();break; //Orden por prioridad y fecha estimada
-                case 9: $sql = TareasQuery::allOrderedByTitle();break; //Orden por titulo
-                case ($filter >= 1 && $filter <= 4): $sql = TareasQuery::empleadoFilter($filter);break; //Filtro de empleado
-                case ($filter >= 11 && $filter <= 14): $sql = TareasQuery::prioridadFilter($filter - 10);break; //Filtro de prioridad
-                default: $sql = TareasQuery::all(); //Orden por defecto
-            }
-        }
-        //echo("<script>console.log('$sql | '+$filter);</script>");
+        switch (TRUE) {
+            case isset($filter['fechaInicio']): 
+                $sql = TareasQuery::dateRangeFilter($filter["fechaInicio"], $filter['fechaFinal']);
+                break;
+            case isset($filter['titulo']): 
+                $sql = TareasQuery::tituloFilter($filter['titulo']);
+                break;
+            case isset($filter['descripcion']): 
+                $sql = TareasQuery::descFilter($filter['descripcion']);
+                break;
+            case isset($filter['empleadoFilter']): 
+                $sql = TareasQuery::empleadoFilter($filter['empleadoFilter']);
+                break;
+            case isset($filter['priority']): 
+                $sql = TareasQuery::prioridadFilter($filter['priority']);
+                break;
+            case isset($filter['order']):
+                if ($filter['order'] == 1){
+                    $sql = TareasQuery::allOrderedByPriority();
+                } else {
+                    $sql = TareasQuery::allOrderedByTitle();
+                }
+                break;
+            default: $sql = TareasQuery::all();
+        }  
         $db = new TareasDb();
         $result = $db-> query($sql);
         $tareas = [];

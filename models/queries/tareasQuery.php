@@ -28,11 +28,11 @@ class TareasQuery{
     }
 
     static function tituloFilter($titulo){
-        return "SELECT * FROM tareas WHERE titulo = $titulo";
+        return "SELECT * FROM tareas WHERE titulo = '$titulo'";
     }
 
     static function descFilter($descripcion){
-        return "SELECT * FROM tareas WHERE descripcion = $descripcion";
+        return "SELECT * FROM tareas WHERE descripcion = '$descripcion'";
     }
 
     static function insert($tarea){

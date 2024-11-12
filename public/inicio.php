@@ -33,6 +33,8 @@ if(isset($_GET['deleteid'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Tareas</title>
     <link rel="stylesheet" href="css/tareas.css">
+    <link rel="stylesheet" href="css/filtros.css">
+    <script src="js/filtros.js" defer></script>
 </head>
 
 <body>
